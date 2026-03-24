@@ -1,0 +1,1 @@
+SmartHub is a multi-functional personal dashboard web application that helps users manage information efficiently in one place. It integrates multiple public APIs to provide real-time data such as weather updates, news, and daily quotes, along with a built-in knowledge-saving feature (Second Brain).
