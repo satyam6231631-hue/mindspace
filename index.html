@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartHub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>🚀 SmartHub</h1>
+
+    <!-- 💡 Quote -->
+    <div class="card">
+      <h2>💡 Quote</h2>
+      <p id="quote">Loading...</p>
+      <p id="author">--</p>
+      <button onclick="getQuote()">New Quote</button>
+    </div>
+
+    <!-- 🌦 Weather -->
+    <div class="card">
+      <h2>🌦 Weather</h2>
+      <input type="text" id="city" placeholder="Enter city">
+      <button onclick="getWeather()">Get Weather</button>
+      <p id="weather">Enter city to check weather</p>
+    </div>
+
+    <!-- 📰 News -->
+    <div class="card">
+      <h2>📰 News</h2>
+      <button onclick="getNews()">Load News</button>
+      <div id="news"></div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
