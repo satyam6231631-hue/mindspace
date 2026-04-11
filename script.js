@@ -1,60 +1,113 @@
-const api="https://api.quotable.io/random"
+// 💡 QUOTE
+async function getQuote() {
+    try {
+        document.getElementById("quote").innerText = "Loading...";
 
+        let res = await fetch("https://dummyjson.com/quotes/random");
+        let data = await res.json();
 
+        document.getElementById("quote").innerText = data.quote;
+        document.getElementById("author").innerText = "- " + data.author;
 
-async function quote(){
-    let res=await fetch(api)
-    let data=await res.json()
-    console.log(data)
-    document.getElementById("quote").innerText=data.content 
-    document.getElementById("author").innerText = "- " + data.author;
-
-
+    } catch (error) {
+        document.getElementById("quote").innerText = "Failed to load quote";
+    }
 }
-quote()
+
+getQuote();
 
 
-
-
+// 🌦 WEATHER
 async function getWeather() {
     let city = document.getElementById("city").value;
-
     let weatherText = document.getElementById("weather");
+
+    if (city === "") {
+        weatherText.innerText = "Please enter a city!";
+        return;
+    }
+
     weatherText.innerText = "Loading...";
 
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY&units=metric`;
+    try {
+        let res = await fetch(`https://wttr.in/${city}?format=j1`);
+        let data = await res.json();
 
-    let res = await fetch(url);
-    let data = await res.json();
+        let temp = data.current_condition[0].temp_C;
+        let desc = data.current_condition[0].weatherDesc[0].value;
 
-    weatherText.innerText =
-        data.name + " : " +
-        data.main.temp + "°C, " +
-        data.weather[0].description;
+        weatherText.innerText = `${city} 🌍 : ${temp}°C, ${desc}`;
+
+    } catch (error) {
+        weatherText.innerText = "Error fetching weather!";
+    }
 }
 
 
-
-
-const link="https://api.spaceflightnewsapi.net/v4/articles/"
+// 📰 NEWS (SORT + FILTER + MAP)
+const link = "https://api.spaceflightnewsapi.net/v4/articles/";
 
 async function getNews() {
     let newsDiv = document.getElementById("news");
+    let searchInput = document.getElementById("searchNews").value.toLowerCase();
 
     newsDiv.innerText = "Loading...";
 
-    let res = await fetch(link);
-    let data = await res.json();
+    try {
+        let res = await fetch(link);
+        let data = await res.json();
 
-    newsDiv.innerHTML = "";
+        // SORT
+        let sorted = data.results.sort((a, b) =>
+            new Date(b.published_at) - new Date(a.published_at)
+        );
 
-    data.results.slice(0, 5).forEach(article => {
-        newsDiv.innerHTML += `
-            <div>
-                <h4>${article.title}</h4>
-                <img src="${article.image_url}" width="150">
-                <br><br>
-            </div>
-        `;
+        // FILTER
+        let filtered = sorted.filter(article =>
+            article.title.toLowerCase().includes(searchInput)
+        );
+
+        // MAP
+        let html = filtered.slice(0, 20).map(article => {
+            return `
+                <div>
+                    <h4>${article.title}</h4>
+                    <img src="${article.image_url}">
+                </div>
+            `;
+        }).join("");
+
+        newsDiv.innerHTML = html || "No results found 😢";
+
+    } catch (error) {
+        newsDiv.innerText = "Error loading news!";
+    }
+}
+
+// 🔍 AUTO SEARCH
+document.getElementById("searchNews").addEventListener("input", getNews);
+
+
+// 🔄 NAVIGATION
+function showSection(sectionId) {
+    document.getElementById("home").style.display = "none";
+
+    document.querySelectorAll(".page").forEach(sec => {
+        sec.style.display = "none";
+    });
+
+    document.getElementById(sectionId).style.display = "block";
+}
+
+function goHome() {
+    document.getElementById("home").style.display = "flex";
+
+    document.querySelectorAll(".page").forEach(sec => {
+        sec.style.display = "none";
     });
 }
+
+function toggleMode() {
+    document.body.classList.toggle("light");
+}
+

@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 /* 🌙 BODY */
@@ -9,83 +8,92 @@ body {
   color: #e5e7eb;
 }
 
-/* 🔷 NAVBAR */
-.navbar {
-  background: rgba(2, 6, 23, 0.8);
-  backdrop-filter: blur(12px);
-  padding: 18px 30px;
+/* 🏠 HOME PAGE */
+.home {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  flex-direction: column;
+  text-align: center;
 }
 
-.navbar h1 {
-  margin: 0;
-  font-size: 28px;
-  letter-spacing: 1px;
+.logo {
+  font-size: 42px;
+  font-weight: 700;
   background: linear-gradient(45deg, #6366f1, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* 📦 MAIN GRID */
-.main {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  padding: 40px;
+.tagline {
+  margin-top: 10px;
+  color: #94a3b8;
 }
 
-/* 🧊 CARD */
-.card {
-  background: rgba(255, 255, 255, 0.04);
+
+/* 🔘 MENU  */
+.menu {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;  
+  gap: 25px;               
+  align-items: center;
+}
+
+/* 🔥 BIG CARD BUTTONS */
+.menu button {
+  width: 280px;             
+  height: 80px;       
+  font-size: 20px;      
+  font-weight: 500;
+
   border-radius: 18px;
-  padding: 25px;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 10px 35px rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: white;
+
   transition: all 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-8px) scale(1.02);
+/* ✨ HOVER EFFECT */
+.menu button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(99,102,241,0.4);
+}
+/* 📄 PAGES */
+.page {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
 }
 
-/* 📰 NEWS CARD BIGGER */
-.news-card {
-  grid-column: span 2;
+/* 🔙 BACK BUTTON */
+.back {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: transparent;
+  border: 1px solid #6366f1;
+  color: #6366f1;
 }
 
-/* ✏️ HEADINGS */
-h2 {
-  margin-bottom: 12px;
-  font-weight: 500;
-  color: #f9fafb;
-}
-
-/* 📝 TEXT */
-p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #cbd5f5;
+.back:hover {
+  background: #6366f1;
+  color: white;
 }
 
 /* 🔤 INPUT */
 input {
   padding: 12px;
-  width: 70%;
+  width: 220px;
   border-radius: 10px;
   border: none;
-  margin-top: 10px;
-  outline: none;
+  margin-top: 15px;
   background: rgba(255,255,255,0.08);
   color: white;
-  transition: 0.3s;
-}
-
-input:focus {
-  background: rgba(255,255,255,0.15);
 }
 
 /* 🔘 BUTTON */
@@ -96,51 +104,34 @@ button {
   border-radius: 10px;
   background: linear-gradient(135deg, #6366f1, #ec4899);
   color: white;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 button:hover {
   transform: scale(1.08);
-  box-shadow: 0 5px 15px rgba(99,102,241,0.4);
 }
 
+/* 📰 NEWS CARDS */
 #news div {
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 12px;
   background: rgba(255,255,255,0.05);
+  margin: 15px auto;
+  padding: 15px;
+  border-radius: 12px;
+  width: 300px;
   transition: 0.3s;
 }
 
 #news div:hover {
-  background: rgba(255,255,255,0.08);
+  transform: scale(1.03);
 }
 
 #news img {
   width: 100%;
   border-radius: 10px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
-
-@media (max-width: 768px) {
-  .main {
-    padding: 20px;
-  }
-
-  .news-card {
-    grid-column: span 1;
-  }
-}
-.page {
-  display: none;
-}
-
-.home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+body.light {
+  background: #f8fafc;
+  color: #0f172a;
 }

@@ -17,12 +17,14 @@
   <!-- 🏠 HOME -->
   <section id="home" class="home">
     <h1 class="logo">🚀 SmartHub</h1>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Toggle Mode</button>
     <p class="tagline">Your Daily Dashboard</p>
 
+
     <div class="menu">
-      <button onclick="showSection('quoteSection')">💡 Quotes</button>
-      <button onclick="showSection('weatherSection')">🌦 Weather</button>
-      <button onclick="showSection('newsSection')">📰 News</button>
+      <button onclick="showSection('quoteSection')">💡  GET QUOTES</button>
+      <button onclick="showSection('weatherSection')">🌦 WEATHER</button>
+      <button onclick="showSection('newsSection')">📰 NEWS</button>
     </div>
   </section>
 
@@ -52,7 +54,12 @@
     <button class="back" onclick="goHome()">⬅ Back</button>
 
     <h2>📰 News</h2>
+
+    <!-- 🔍 SEARCH -->
+    <input type="text" id="searchNews" placeholder="Search news...">
+
     <button onclick="getNews()">Load News</button>
+
     <div id="news"></div>
   </section>
 
